@@ -1,5 +1,44 @@
 # Enterprise Azure AKS Platform
 
+
+                 GitHub
+                    │
+                    ▼
+          ┌──────────────────┐
+          │ Terraform CI     │
+          │                  │
+          │ fmt              │
+          │ validate         │
+          │ TFLint           │
+          │ Trivy            │
+          │ Checkov          │
+          │ plan             │
+          └────────┬─────────┘
+                   │
+                success
+                   │
+                   ▼
+          ┌──────────────────┐
+          │ Terraform CD     │
+          │                  │
+          │ Azure Login      │
+          │ Terraform Init   │
+          │ Terraform Plan  │
+          │ Terraform Apply │
+          └────────┬─────────┘
+                   │
+                   ▼
+                 Azure
+                   │
+        ┌──────────┼───────────┐
+        ▼          ▼           ▼
+       AKS       AppGW       PostgreSQL
+        │
+       ACR
+        │
+    Key Vault
+
+
 ## Phase 0
 - [x] Azure Subscription
 - [x] Azure DevOps
@@ -12,24 +51,24 @@
 - [x] Resource Group Module
 
 ## Phase 2
-- [ ] Network
-- [ ] Log Analytics
-- [ ] ACR
-- [ ] AKS
+- [x] Network
+- [x] Log Analytics
+- [x] ACR
+- [x] AKS
 
 ## Phase 3
-- [ ] Key Vault
-- [ ] PostgreSQL
-- [ ] Managed Identity
-- [ ] AGIC
+- [x] Key Vault
+- [x] PostgreSQL
+- [x] Managed Identity
+- [x] AGIC
 
 ## Phase 4
-- [ ] Dockerize StreamFlix
-- [ ] Dockerize ToDo Frontend
-- [ ] Dockerize Python Backend
+- [x] Dockerize StreamFlix
+- [x] Dockerize ToDo Frontend
+- [x] Dockerize Python Backend
 
 ## Phase 5
-- [ ] CI Pipeline
+- [x] CI Pipeline
 - [ ] SonarQube
 - [ ] Docker Push
 

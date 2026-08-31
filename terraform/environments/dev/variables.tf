@@ -91,20 +91,55 @@ variable "dns_prefix" {
 }
 
 
+variable "kubernetes_version" {
+
+  description = "AKS Kubernetes version"
+
+  type = string
+
+  default = null
+
+}
+
+
+variable "api_server_authorized_ip_ranges" {
+
+  description = "IP ranges allowed to access AKS API server"
+
+  type = list(string)
+
+}
+
+
 variable "system_node_pool" {
 
-  description = "AKS system node pool configuration"
+  type = object({
 
-  type = any
+    vm_size         = string
+    node_count      = number
+    min_count       = number
+    max_count       = number
+    os_disk_size_gb = number
+    max_pods        = number
+
+  })
 
 }
 
 
 variable "user_node_pool" {
 
-  description = "AKS user node pool configuration"
+  type = object({
 
-  type = any
+    name            = string
+    vm_size         = string
+    node_count      = number
+    min_count       = number
+    max_count       = number
+    os_disk_size_gb = number
+    max_pods        = number
+
+  })
 
 }
 

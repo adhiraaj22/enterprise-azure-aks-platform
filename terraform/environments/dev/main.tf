@@ -109,6 +109,11 @@ module "aks" {
 
   source = "../../modules/aks"
 
+
+  #############################################
+  # Basic Configuration
+  #############################################
+
   resource_group_name = module.resource_group.resource_group_names["rg_001"]
 
   location = var.location
@@ -117,17 +122,56 @@ module "aks" {
 
   dns_prefix = var.dns_prefix
 
+  kubernetes_version = var.kubernetes_version
+
+
+  #############################################
+  # Network
+  #############################################
+
   subnet_id = module.network.subnet_ids["aks"]
+
+
+  #############################################
+  # Monitoring
+  #############################################
 
   log_analytics_workspace_id = module.log_analytics.workspace_id
 
+
+  #############################################
+  # ACR
+  #############################################
+
   acr_id = module.acr.acr_id
 
+
+  #############################################
+  # Managed Identity
+  #############################################
+
   user_assigned_identity_id = module.managed_identity.identity_id
+
+
+  #############################################
+  # AKS API Server Security
+  #############################################
+
+  api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
+
+
+  #############################################
+  # Node Pools
+  #############################################
 
   system_node_pool = var.system_node_pool
 
   user_node_pool = var.user_node_pool
+
+
+  #############################################
+  # Tags
+  #############################################
 
   tags = local.common_tags
 

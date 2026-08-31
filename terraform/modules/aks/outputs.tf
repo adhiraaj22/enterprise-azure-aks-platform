@@ -1,25 +1,47 @@
-output "aks_id" {
-  value = azurerm_kubernetes_cluster.this.id
-}
-
 output "aks_name" {
+
   value = azurerm_kubernetes_cluster.this.name
+
 }
 
-output "kube_config" {
-  value     = azurerm_kubernetes_cluster.this.kube_config_raw
-  sensitive = true
+
+output "aks_id" {
+
+  value = azurerm_kubernetes_cluster.this.id
+
 }
 
-output "host" {
-  value = azurerm_kubernetes_cluster.this.kube_config[0].host
+
+output "aks_fqdn" {
+
+  value = azurerm_kubernetes_cluster.this.fqdn
+
 }
 
-output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.this.kube_config[0].client_certificate
-  sensitive = true
+
+output "kubernetes_version" {
+
+  value = azurerm_kubernetes_cluster.this.kubernetes_version
+
 }
 
-output "kubelet_identity_object_id" {
-  value = azurerm_kubernetes_cluster.this.kubelet_identity[0].object_id
+
+output "oidc_issuer_url" {
+
+  value = azurerm_kubernetes_cluster.this.oidc_issuer_url
+
+}
+
+
+output "node_resource_group" {
+
+  value = azurerm_kubernetes_cluster.this.node_resource_group
+
+}
+
+
+output "user_node_pool_id" {
+
+  value = azurerm_kubernetes_cluster_node_pool.user.id
+
 }

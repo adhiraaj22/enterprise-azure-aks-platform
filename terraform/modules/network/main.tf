@@ -12,6 +12,7 @@ resource "azurerm_virtual_network" "this" {
   tags = local.common_tags
 }
 
+
 #############################################
 # Network Security Groups
 #############################################
@@ -35,9 +36,13 @@ resource "azurerm_network_security_group" "this" {
       direction                  = security_rule.value.direction
       access                     = security_rule.value.access
       protocol                   = security_rule.value.protocol
-      source_port_range          = security_rule.value.source_port_range
-      destination_port_range     = security_rule.value.destination_port_range
-      source_address_prefix      = security_rule.value.source_address_prefix
+
+      source_port_range = security_rule.value.source_port_range
+
+      destination_port_range = security_rule.value.destination_port_range
+
+      source_address_prefix = security_rule.value.source_address_prefix
+
       destination_address_prefix = security_rule.value.destination_address_prefix
 
     }
@@ -45,6 +50,7 @@ resource "azurerm_network_security_group" "this" {
 
   tags = local.common_tags
 }
+
 
 #############################################
 # Route Tables
@@ -64,16 +70,23 @@ resource "azurerm_route_table" "this" {
 
     content {
 
-      name                   = route.key
-      address_prefix         = route.value.address_prefix
-      next_hop_type          = route.value.next_hop_type
-      next_hop_in_ip_address = try(route.value.next_hop_ip_address, null)
+      name = route.key
+
+      address_prefix = route.value.address_prefix
+
+      next_hop_type = route.value.next_hop_type
+
+      next_hop_in_ip_address = try(
+        route.value.next_hop_ip_address,
+        null
+      )
 
     }
   }
 
   tags = local.common_tags
 }
+
 
 #############################################
 # Subnets
@@ -83,21 +96,31 @@ resource "azurerm_subnet" "this" {
 
   for_each = var.subnets
 
-  name                 = each.value.name
-  resource_group_name  = var.resource_group_name
+  name = each.value.name
+
+  resource_group_name = var.resource_group_name
+
   virtual_network_name = azurerm_virtual_network.this.name
 
   address_prefixes = each.value.address_prefixes
 
   service_endpoints = each.value.service_endpoints
 
-  private_endpoint_network_policies = each.value.private_endpoint_network_policies
+  private_endpoint_network_policies = (
+    each.value.private_endpoint_network_policies
+  )
 
-  private_link_service_network_policies_enabled = each.value.private_link_service_network_policies_enabled
+  private_link_service_network_policies_enabled = (
+    each.value.private_link_service_network_policies_enabled
+  )
 
   dynamic "delegation" {
 
-    for_each = each.value.delegation == null ? [] : [each.value.delegation]
+    for_each = (
+      each.value.delegation == null
+      ? []
+      : [each.value.delegation]
+    )
 
     content {
 
@@ -105,13 +128,15 @@ resource "azurerm_subnet" "this" {
 
       service_delegation {
 
-        name    = delegation.value.service_delegation.name
+        name = delegation.value.service_delegation.name
+
         actions = delegation.value.service_delegation.actions
 
       }
     }
   }
 }
+
 
 #############################################
 # NSG Association
@@ -123,8 +148,11 @@ resource "azurerm_subnet_network_security_group_association" "this" {
 
   subnet_id = azurerm_subnet.this[each.key].id
 
-  network_security_group_id = azurerm_network_security_group.this[each.key].id
+  network_security_group_id = (
+    azurerm_network_security_group.this[each.key].id
+  )
 }
+
 
 #############################################
 # Route Table Association
@@ -136,10 +164,14 @@ resource "azurerm_subnet_route_table_association" "this" {
 
     for k, v in var.subnets :
     k => v
+
     if contains(keys(var.route_tables), k)
 
   }
 
-  subnet_id      = azurerm_subnet.this[each.key].id
-  route_table_id = azurerm_route_table.this[each.key].id
+  subnet_id = azurerm_subnet.this[each.key].id
+
+  route_table_id = (
+    azurerm_route_table.this[each.key].id
+  )
 }
