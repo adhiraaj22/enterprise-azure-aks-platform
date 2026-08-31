@@ -64,9 +64,14 @@ jobs:
 
       - name: Initialize TFLint
         working-directory: ${{ env.TF_ROOT }}
-        run: tflint --init
+        run: tflint --init --config="${{ github.workspace }}/.tflint.hcl"
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+
+      - name: Run TFLint
+        working-directory: ${{ env.TF_ROOT }}
+        run: tflint --recursive --config="${{ github.workspace }}/.tflint.hcl" -f compact
 
 
       - name: Run TFLint
