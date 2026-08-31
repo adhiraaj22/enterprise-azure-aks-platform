@@ -26,3 +26,5 @@ Key Features:
 ✔ Horizontal Pod Autoscaler (HPA)
 ✔ Azure Monitor & Log Analytics
 ✔ Production-inspired Deployment Strategy
+
+CI workflow test
