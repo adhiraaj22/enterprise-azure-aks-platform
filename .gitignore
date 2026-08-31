@@ -1,0 +1,60 @@
+# ============================================
+# Terraform
+# ============================================
+
+**/.terraform/
+
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+*.tfplan
+*.tfplan.*
+
+crash.log
+crash.*.log
+
+# Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# Allow example variable files
+!terraform.tfvars.example
+
+# Terraform override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform plan files
+*.tfplan
+tfplan
+
+# ============================================
+# Environment / Secrets
+# ============================================
+
+.env
+.env.*
+
+*.pem
+*.key
+*.pfx
+*.crt
+
+
+# ============================================
+# IDE
+# ============================================
+
+.vscode/
+.idea/
+
+
+# ============================================
+# OS
+# ============================================
+
+.DS_Store
+Thumbs.db

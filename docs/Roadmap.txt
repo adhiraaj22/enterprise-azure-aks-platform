@@ -1,0 +1,29 @@
+Planning
+     ↓
+Bootstrap
+     ↓
+Remote Backend
+     ↓
+Terraform Modules
+     ↓
+Networking
+     ↓
+ACR
+     ↓
+AKS
+     ↓
+Key Vault
+     ↓
+PostgreSQL
+     ↓
+AGIC
+     ↓
+Docker
+     ↓
+CI
+     ↓
+CD
+     ↓
+Kubernetes
+     ↓
+Monitoring
