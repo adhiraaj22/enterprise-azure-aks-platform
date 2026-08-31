@@ -1,91 +1,28 @@
 # Enterprise Azure AKS Platform
+Enterprise Azure DevOps & AKS Platform | Terraform | Azure DevOps | Kubernetes | Docker | Helm | AGIC | Key Vault | SonarQube | CI/CD
 
 
-                 GitHub
-                    │
-                    ▼
-          ┌──────────────────┐
-          │ Terraform CI     │
-          │                  │
-          │ fmt              │
-          │ validate         │
-          │ TFLint           │
-          │ Trivy            │
-          │ Checkov          │
-          │ plan             │
-          └────────┬─────────┘
-                   │
-                success
-                   │
-                   ▼
-          ┌──────────────────┐
-          │ Terraform CD     │
-          │                  │
-          │ Azure Login      │
-          │ Terraform Init   │
-          │ Terraform Plan  │
-          │ Terraform Apply │
-          └────────┬─────────┘
-                   │
-                   ▼
-                 Azure
-                   │
-        ┌──────────┼───────────┐
-        ▼          ▼           ▼
-       AKS       AppGW       PostgreSQL
-        │
-       ACR
-        │
-    Key Vault
+This project demonstrates the implementation of a production-inspired Azure Platform using Infrastructure as Code (Terraform), Azure Kubernetes Service (AKS), Azure DevOps multi-stage YAML pipelines, Docker, Helm, Application Gateway Ingress Controller (AGIC), Azure Key Vault, SonarQube, Azure Monitor, and Kubernetes best practices.
 
+Applications Included:
 
-## Phase 0
-- [x] Azure Subscription
-- [x] Azure DevOps
-- [x] Git Repository
-- [x] Service Connection
+• StreamFlix (ReactJS Frontend)
+• ToDo (ReactJS Frontend + Python Backend + Azure PostgreSQL)
 
-## Phase 1
-- [x] Bootstrap
-- [x] Remote Backend
-- [x] Resource Group Module
+Key Features:
 
-## Phase 2
-- [x] Network
-- [x] Log Analytics
-- [x] ACR
-- [x] AKS
-
-## Phase 3
-- [x] Key Vault
-- [x] PostgreSQL
-- [x] Managed Identity
-- [x] AGIC
-
-## Phase 4
-- [x] Dockerize StreamFlix
-- [x] Dockerize ToDo Frontend
-- [x] Dockerize Python Backend
-
-## Phase 5
-- [x] CI Pipeline
-- [ ] SonarQube
-- [ ] Docker Push
-
-## Phase 6
-- [ ] Kubernetes Deployment
-- [ ] Services
-- [ ] Ingress
-- [ ] Secrets
-- [ ] ConfigMaps
-- [ ] HPA
-
-## Phase 7
-- [ ] Monitoring
-- [ ] Alerts
-- [ ] Azure Monitor
-
-## Phase 8
-- [ ] Helm
-- [ ] Blue/Green Deployment
-- [ ] Production Hardening
+✔ Infrastructure as Code using Terraform
+✔ Modular Terraform Architecture
+✔ Remote State Management
+✔ Azure DevOps CI/CD Pipelines
+✔ Docker Image Build & Push
+✔ Azure Container Registry (ACR)
+✔ Azure Kubernetes Service (AKS)
+✔ Application Gateway Ingress Controller (AGIC)
+✔ Azure Key Vault Integration
+✔ Secrets Store CSI Driver
+✔ SonarQube Code Analysis
+✔ Helm Charts
+✔ Horizontal Pod Autoscaler (HPA)
+✔ Azure Monitor & Log Analytics
+✔ Production-inspired Deployment Strategy
