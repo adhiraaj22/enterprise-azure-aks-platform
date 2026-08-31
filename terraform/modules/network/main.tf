@@ -31,11 +31,11 @@ resource "azurerm_network_security_group" "this" {
 
     content {
 
-      name                       = security_rule.key
-      priority                   = security_rule.value.priority
-      direction                  = security_rule.value.direction
-      access                     = security_rule.value.access
-      protocol                   = security_rule.value.protocol
+      name      = security_rule.key
+      priority  = security_rule.value.priority
+      direction = security_rule.value.direction
+      access    = security_rule.value.access
+      protocol  = security_rule.value.protocol
 
       source_port_range = security_rule.value.source_port_range
 
