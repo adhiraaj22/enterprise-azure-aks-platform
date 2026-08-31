@@ -1,6 +1,6 @@
 locals {
   common_tags = merge(var.tags, {
-    Module = "keyvault"
+    Module    = "keyvault"
     ManagedBy = "Terraform"
   })
 }

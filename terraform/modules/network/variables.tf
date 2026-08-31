@@ -55,8 +55,8 @@ variable "route_tables" {
     name = string
 
     routes = map(object({
-      address_prefix     = string
-      next_hop_type      = string
+      address_prefix      = string
+      next_hop_type       = string
       next_hop_ip_address = optional(string)
     }))
   }))
