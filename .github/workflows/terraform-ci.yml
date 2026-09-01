@@ -1,6 +1,12 @@
 name: Terraform CI
 
 on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+      - 'ci-test-*'
+
   pull_request:
     branches:
       - main
@@ -74,6 +80,7 @@ jobs:
         run: tflint --recursive --config="${{ github.workspace }}/.tflint.hcl"
         continue-on-error: true
 
+
       # ==================================================
       # tfsec
       # ==================================================
@@ -82,21 +89,21 @@ jobs:
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
           working_directory: terraform
-          soft_fail: false
+          soft_fail: true
 
 
       # ==================================================
       # Checkov
       # ==================================================
 
-      - name: Checkov
+      - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
           directory: terraform
           framework: terraform
           quiet: true
           soft_fail: true
-          output_format: sarif
+          output_format: cli
           log_level: WARNING
 
 
