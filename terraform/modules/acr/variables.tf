@@ -12,7 +12,7 @@ variable "acr_name" {
 
 variable "sku" {
   type    = string
-  default = "Basic"
+  default = "Premium"
 }
 
 variable "admin_enabled" {
@@ -22,7 +22,7 @@ variable "admin_enabled" {
 
 variable "public_network_access_enabled" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "tags" {

@@ -75,9 +75,11 @@ module "acr" {
 
   acr_name = var.acr_name
 
-  sku = "Basic"
+  sku = "Premium"
 
   admin_enabled = false
+
+  public_network_access_enabled = true
 
   tags = local.common_tags
 }

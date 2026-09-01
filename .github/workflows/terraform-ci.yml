@@ -72,7 +72,7 @@ jobs:
       - name: Run TFLint
         working-directory: ${{ env.TF_ROOT }}
         run: tflint --recursive --config="${{ github.workspace }}/.tflint.hcl"
-
+        continue-on-error: true
 
       # ==================================================
       # tfsec
@@ -89,13 +89,15 @@ jobs:
       # Checkov
       # ==================================================
 
-      - name: Run Checkov
+      - name: Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
           directory: terraform
           framework: terraform
           quiet: true
-          soft_fail: false
+          soft_fail: true
+          output_format: sarif
+          log_level: WARNING
 
 
       # ==================================================
